@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('./../controllers');
+const { ong } = require('./../controllers');
 
-router.get('/ong', controller.ong.list);
+router.get('/ong', ong.list);
 
-router.post('/ong', controller.ong.create);
+router.post('/ong', ong.create);
 
 module.exports = router;

@@ -5,10 +5,20 @@ const list = async (req, res) => {
     try {
         const pagination = process.env.PAGINATION;
         const { page = 1 } = req.query;
+
+        const [count] = await dbConn('incidents').count();
+
         const incidents = await dbConn('incidents')
+            .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
             .limit(pagination)
             .offset((page - 1) * pagination)
-            .select('*');
+            .select(['incidents.*',
+                'ongs.name',
+                'ongs.email',
+                'ongs.whatsapp',
+                'ongs.city',
+                'ongs.uf']);
+        res.header('X-Total-Count', count['count(*)']);
         return res.json(incidents);
     } catch (error) {
         console.log(error)

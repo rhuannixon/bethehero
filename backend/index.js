@@ -1,3 +1,5 @@
-const server = require('./src/server');
+const app = require('./src/server');
+const port = process.env.PORT || 3000;
 
-module.exports = server;
+app.listen(port);
+console.log(`app runing on port ${port}`);

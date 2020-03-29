@@ -1,4 +1,4 @@
 node_modules/
 .vscode/
 .env
-./src/database/db.sqlite
+src/database/*.sqlite

@@ -1,5 +1,5 @@
-const crypto = require('crypto');
 const dbConn = require('./../database/connection')
+const generateUniqueId = require('./../util/generateUniqueId');
 
 const list = async (req, res) => {
     try {
@@ -15,7 +15,7 @@ const create = async (req, res) => {
     try {
 
         const { name, email, whatsapp, city, uf } = req.body;
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUniqueId();
 
         await dbConn('ongs').insert({
             id,

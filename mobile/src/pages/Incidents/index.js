@@ -67,7 +67,11 @@ export default function Incidents() {
                         <Text style={styles.incidentProperty}>Caso:</Text>
                         <Text style={styles.incidentValue}>{incident.title}</Text>
                         <Text style={styles.incidentProperty}>Valor:</Text>
-                        <Text style={styles.incidentValue}>{Intl.NumberFormat('pt-BR', { style: "currency", currency: "BRL" }).format(incident.value)}</Text>
+                        <Text style={styles.incidentValue}>{
+                            incident.value
+                                ? Intl.NumberFormat('pt-BR', { style: "currency", currency: "BRL" }).format(incident.value)
+                                : 'GRATUITO'
+                        }</Text>
 
                         <TouchableOpacity style={styles.detailsButton} onPress={() => navigateDetail(incident)}>
                             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
